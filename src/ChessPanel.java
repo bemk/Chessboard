@@ -13,13 +13,14 @@ public class ChessPanel extends JPanel
 	private static final long serialVersionUID = 1L;
 	private int y = 0;
 	private int x = 0;
-	int lenght = 40;
+	int lenght = 60;
 	int correction = 4 * lenght;
+	boolean color = true;
 	
 	public ChessPanel()
 	{
-		setPreferredSize(new Dimension(800,800));
-		setBackground(Color.white);
+		setPreferredSize(new Dimension(600,600));
+		setBackground(Color.cyan);
 	}
 	
 	public void paintComponent(Graphics g)
@@ -39,10 +40,27 @@ public class ChessPanel extends JPanel
 			if(i % 8 == 0)
 			{
 				y += lenght;
+				x = 0;
+				color = !color;
 			}
 			
-			Shape rectangle = new Rectangle(x * lenght - correction, y - correction, lenght, lenght);
+			if (color)
+			{
+				g2.setPaint(Color.black);
+			}
+			else 
+			{
+				g2.setPaint(Color.white);
+			}
+			
+			Shape rectangle = new Rectangle(x * lenght - correction, y - correction - lenght, lenght, lenght);
+			g2.fill(rectangle);
 			g2.draw(rectangle);
+			
+		color = !color;
 		}
+		g2.setPaint(Color.black);
+		Shape rectangle = new Rectangle(0 - correction, 0 - correction, correction * 2, correction * 2);
+		g2.draw(rectangle);
 	}
 }
