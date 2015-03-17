@@ -23,7 +23,7 @@ public class Chess extends JApplet
 	
 	public void init() 
 	{
-		JPanel panel = new ChessPanel2();
+		JPanel panel = new ChessPanel();
 		getContentPane().add(panel);
 	}
 }
