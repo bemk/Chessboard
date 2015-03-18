@@ -15,7 +15,7 @@ public class ChessPanel extends JPanel
 	private int x = 0;
 	int lenght = 60;
 	int correction = 4 * lenght;
-	boolean color = true;
+	boolean color = false;
 	
 	public ChessPanel()
 	{
@@ -44,20 +44,11 @@ public class ChessPanel extends JPanel
 				color = !color;
 			}
 			
-			if (color)
-			{
-				g2.setPaint(Color.black);
-			}
-			else 
-			{
-				g2.setPaint(Color.white);
-			}
+			g2.setPaint((color = !color) ? Color.BLACK : Color.WHITE);
 			
 			Shape rectangle = new Rectangle(x * lenght - correction, y - correction - lenght, lenght, lenght);
 			g2.fill(rectangle);
-			g2.draw(rectangle);
-			
-		color = !color;
+			g2.draw(rectangle);			
 		}
 		g2.setPaint(Color.black);
 		Shape rectangle = new Rectangle(0 - correction, 0 - correction, correction * 2, correction * 2);
